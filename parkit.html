@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="jquery.mobile-1.0a1.min.css" />
+  <script src="scripts/phonegap.js"></script>
+  <script src="scripts/jquery-1.4.3.min.js"></script>
+  <script src="scripts/jquery.mobile-1.0a1.min.js"></script>
+    
+  <script type="text/javascript">
+    function loader() {
+	var state = document.readyState;
+
+	if (state == 'loaded' || state == 'complete') {
+	    getLocation();
+	} else {
+	    if (navigator.userAgent.indexOf('Browzr') > -1) {
+		setTimeout(run, 250);
+	    } else {
+		document.addEventListener('deviceready',run,false);
+	    }
+        }
+    }
+    var getLocation = function() {
+	var suc = function(p) {
+	    parkIt(p);
+	};
+	var fail = function() {
+	    alert("NOT ABLE TO GET THE CURRENT POSITION");
+	};
+	navigator.geolocation.getCurrentPosition(suc,fail);
+    }
+    function parkIt(p) {
+	localStorage.setItem('latitude', p.coords.latitude);
+	localStorage.setItem('longitude', p.coords.longitude);      
+	
+	var latlng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+	var myOptions = {
+	    zoom: 8,
+	    center: latlng,
+	           mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	var map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+    }
+
+</script>
+    
+</head>
+<body onload="loader()">
+
+   <div data-role="page" data-theme="b" id="jqm-home"> 
+     <div data-role="header">
+       <h1>whereismycar-android</h1>
+     </div>
+     
+     <div data-role="content">       
+       STORE INFO E RETURN SOMETHING (EX: THE STREET)
+     </div> 
+     
+     <div data-role="footer">
+       <h4>@fitzkarraldo</h4>
+     </div> 
+   </div> 
+   
+ </body>
+ 
+</html>
