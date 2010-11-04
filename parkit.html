@@ -39,6 +39,7 @@
 	try {
 	    localStorage.setItem('latitude', p.coords.latitude);
 	    localStorage.setItem('longitude', p.coords.longitude);
+	    document.write("Car parked @ lat " + p.coords.latitude + " long " + p.coords.longitude);
 	    // localStorage.getItem("latitude"))
 	    // localStorage.removeItem("latitude");
 	} catch (e) {
@@ -68,7 +69,7 @@
      </div>
      
      <div data-role="content">       
-       STORE INFO E RETURN SOMETHING (EX: THE STREET)
+       
      </div> 
      
      <div data-role="footer">
