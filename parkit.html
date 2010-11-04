@@ -10,16 +10,21 @@
     function loader() {
 	var state = document.readyState;
 
+	if (typeof(localStorage) == 'undefined' ) {
+	    alert('Upgrade your browser as it does not support HTML5 localStorage.');
+	} 
+
 	if (state == 'loaded' || state == 'complete') {
 	    getLocation();
 	} else {
 	    if (navigator.userAgent.indexOf('Browzr') > -1) {
 		setTimeout(run, 250);
 	    } else {
-		document.addEventListener('deviceready',run,false);
+		document.addEventListener('deviceready',geoLocation,false);
 	    }
         }
     }
+
     var getLocation = function() {
 	var suc = function(p) {
 	    parkIt(p);
