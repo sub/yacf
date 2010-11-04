@@ -18,7 +18,7 @@
 	    getLocation();
 	} else {
 	    if (navigator.userAgent.indexOf('Browzr') > -1) {
-		setTimeout(run, 250);
+		setTimeout(geoLocation, 250);
 	    } else {
 		document.addEventListener('deviceready',geoLocation,false);
 	    }
@@ -39,7 +39,9 @@
 	try {
 	    localStorage.setItem('latitude', p.coords.latitude);
 	    localStorage.setItem('longitude', p.coords.longitude);
-	    $('.content').text("Car parked @ lat " + p.coords.latitude + " long " + p.coords.longitude);
+	    // mylatitude = localStorage.getItem("latitude");
+	    newtext = "Car parked @ lat " + p.coords.latitude + " long " + p.coords.longitude;
+	    $('.content').text(newtext);
 	    // localStorage.getItem("latitude"))
 	    // localStorage.removeItem("latitude");
 	} catch (e) {
