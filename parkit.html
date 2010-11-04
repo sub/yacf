@@ -34,9 +34,18 @@
 	};
 	navigator.geolocation.getCurrentPosition(suc,fail);
     }
+
     function parkIt(p) {
-	localStorage.setItem('latitude', p.coords.latitude);
-	localStorage.setItem('longitude', p.coords.longitude);      
+	try {
+	    localStorage.setItem('latitude', p.coords.latitude);
+	    localStorage.setItem('longitude', p.coords.longitude);
+	    // localStorage.getItem("latitude"))
+	    // localStorage.removeItem("latitude");
+	} catch (e) {
+	    if (e == QUOTA_EXCEEDED_ERR) {
+		alert('Quota exceeded!');
+	    }
+	}
 	
 	var latlng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
 	var myOptions = {
