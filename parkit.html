@@ -48,34 +48,34 @@
 	    }
 	}
 	
-	var latlng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-	var myOptions = {
-	    zoom: 8,
-	    center: latlng,
-	           mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-	var map = new google.maps.Map(document.getElementById("map_canvas"),
-            myOptions);
+	// var latlng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+	// var myOptions = {
+	//     zoom: 8,
+	//     center: latlng,
+	//            mapTypeId: google.maps.MapTypeId.ROADMAP
+	// };
+	// var map = new google.maps.Map(document.getElementById("map_canvas"),
+        //     myOptions);
     }
 
 </script>
     
 </head>
-<body onload="loader()">
-
-   <div data-role="page" data-theme="b" id="jqm-home"> 
-     <div data-role="header">
-       <h1>whereismycar-android</h1>
-     </div>
-     
-     <div data-role="content">       
-       
-     </div> 
-     
-     <div data-role="footer">
-       <h4>@fitzkarraldo</h4>
-     </div> 
-   </div> 
+    <body onload="loader()">
+    
+    <div data-role="page" data-theme="b" id="jqm-home"> 
+      <div data-role="header">
+        <h1>whereismycar-android</h1>
+      </div>
+    
+      <div data-role="content" class="content" align="center">       
+        Please wait, storing your GPS pos.
+      </div> 
+    
+      <div data-role="footer">
+        <h4>@fitzkarraldo</h4>
+      </div> 
+    </div> 
    
  </body>
  
