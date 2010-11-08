@@ -5,13 +5,12 @@
   <script src="scripts/phonegap.js"></script>
   <script src="scripts/jquery-1.4.3.min.js"></script>
   <script src="scripts/jquery.mobile-1.0a1.min.js"></script>
-    
+  <script src="scripts/Lawnchair.js"></script>
+  <script src="scripts/LawnchairAdaptorHelpers.js"></script>
+  <script src="scripts/DOMStorageAdaptor.js"></script>
+
   <script type="text/javascript">
     function loader() {
-	// solo per check
-	// newlatitude = localStorage.getItem("latitude");
-	// alert("NO" + newlatitude);
-	// fine check
 	var state = document.readyState;
 
 	if (typeof(localStorage) == 'undefined' ) {
@@ -41,27 +40,22 @@
 
     function parkIt(p) {
 	try {
-	    localStorage.setItem('latitude', p.coords.latitude);
-	    localStorage.setItem('longitude', p.coords.longitude);
-	    // mylatitude = localStorage.getItem("latitude");
+            // create my Lawnchair stores
+            var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
+	    
+            // save some data to my stores
+            gpsstore.save({key:'destination', value:"home"});
+            gpsstore.save({key:'latitude', value:p.coords.latitude});
+            gpsstore.save({key:'longitude', value:p.coords.longitude});
+	    
 	    newtext = "Car parked @ lat " + p.coords.latitude + " long " + p.coords.longitude;
 	    $('.content').text(newtext);
-	    // localStorage.getItem("latitude"))
-	    // localStorage.removeItem("latitude");
 	} catch (e) {
 	    if (e == QUOTA_EXCEEDED_ERR) {
 		alert('Quota exceeded!');
 	    }
 	}
 	
-	// var latlng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-	// var myOptions = {
-	//     zoom: 8,
-	//     center: latlng,
-	//            mapTypeId: google.maps.MapTypeId.ROADMAP
-	// };
-	// var map = new google.maps.Map(document.getElementById("map_canvas"),
-        //     myOptions);
     }
 
 </script>
@@ -71,7 +65,7 @@
     
     <div data-role="page" data-theme="b" id="jqm-home"> 
       <div data-role="header">
-        <h1>whereismycar-android</h1>
+        <h1>parkit!</h1>
       </div>
     
       <div data-role="content" class="content" align="center">       
