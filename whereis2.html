@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="jquery.mobile-1.0a1.min.css" />
+    <script src="scripts/phonegap.js"></script>
+    <script src="scripts/jquery-1.4.3.min.js"></script>
+    <script src="scripts/jquery.mobile-1.0a1.min.js"></script>
+    <script type="text/javascript"
+	    src="http://maps.google.com/maps/api/js?sensor=true">
+    </script>
+
+    <script src="scripts/Lawnchair.js"></script>
+    <script src="scripts/LawnchairAdaptorHelpers.js"></script>
+    <script src="scripts/DOMStorageAdaptor.js"></script>
+
+    <style type="text/css">
+      #map_canvas { height: 40% }
+    </style>
+    
+    <script type="text/javascript">
+    function loader() {
+	var state = document.readyState;
+
+	if (typeof(localStorage) == 'undefined' ) {
+	    alert('Upgrade your browser as it does not support HTML5 localStorage.');
+	} 
+
+	if (state == 'loaded' || state == 'complete') {
+            getLocation();
+	    //initializeMap();
+	} else {
+            if (navigator.userAgent.indexOf('Browzr') > -1) {
+		setTimeout(getLocation, 250);
+            } else {
+		document.addEventListener('deviceready',getLocation,false);
+	    }
+	}
+    }
+
+    var getLocation = function() {
+	var suc = function(p) {
+	    initializeMap(p);
+	};
+	var fail = function() {
+	    alert("NOT ABLE TO GET THE CURRENT POSITION");
+	};
+	navigator.geolocation.getCurrentPosition(suc,fail);
+    }
+
+    function initializeMap(p) {
+        var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
+	var destination;
+        var to_lat;
+        var to_long;
+	var fromLatLng;
+	var toLatLng;
+	var directionsDisplay = new google.maps.DirectionsRenderer();
+	var directionsService = new google.maps.DirectionsService();
+	var map;
+
+	console.log("actual latitude " + p.coords.latitude);
+	console.log("actual longitude " + p.coords.longitude);
+        // retrieve my data from my stores
+        gpsstore.get('destination', function(r) {
+            destination = r.value;
+	    console.log("destination " + destination);
+        });
+        gpsstore.get('latitude', function(r) {
+            to_lat = r.value; 
+	    console.log("to_lat " + to_lat);
+        });
+        gpsstore.get('longitude', function(r) {
+            to_long = r.value;
+	    console.log("to_long " + to_long);
+        });
+
+	toLatLng = new google.maps.LatLng(to_lat, to_long);
+	fromLatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+	console.log(fromLatLng);
+	console.log(toLatLng);
+
+	var request = {
+	    origin:fromLatLng, 
+	    destination:toLatLng,
+	    travelMode: google.maps.DirectionsTravelMode.DRIVING
+	};
+
+	directionsService.route(request, function(result, status) {
+	    console.log("waiting");
+	    if (status == google.maps.DirectionsStatus.OK) {
+		console.log("OK");
+		directionsDisplay.setDirections(result);
+		console.log("set directions?");
+	    }
+	});
+
+	var myOptions = {
+	    zoom:7,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP,
+	}
+	
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	console.log(map);
+	directionsDisplay.setMap(map);
+
+	// function initialize() {
+	//     directionsDisplay = new google.maps.DirectionsRenderer();
+	//     var from = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+	//     var myOptions = {
+	// 	zoom:7,
+	// 	mapTypeId: google.maps.MapTypeId.ROADMAP,
+	//     }
+	//     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	//     directionsDisplay.setMap(map);
+	// }
+		
+	/// a
+
+	// var DirReq = {
+	//     origin: fromLatLng,
+	//     destination: toLatLng,
+	//     travelMode: DirectionsTravelMode,
+	//     unitSystem: DirectionsUnitSystem,
+	//     waypoints[]: DirectionsWaypoint,
+	//     optimizeWaypoints: Boolean,
+	//     provideRouteAlternatives: Boolean,
+	//     avoidHighways: Boolean,
+	//     avoidTolls: Boolean
+	//     region: String
+	// }
+
+	// var myOptions = {
+	//     zoom: 8,
+	//     center: latlng,
+	//     mapTypeId: google.maps.MapTypeId.ROADMAP
+	// };
+	var map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+    }
+
+</script>
+    
+  </head>
+    <body onload="loader()">
+    
+      <div data-role="page" data-fullscreen="true">
+	<div data-role="header" data-position="fixed">
+	  <h1>whereis? - map</h1>
+	</div>
+	
+	<div data-role="content" class="content">
+	  <div id="map_canvas" style="width:100%; height:100%; position:absolute"></div>
+	</div>
+	
+	<div data-role="footer" data-position="fixed">
+	  <h4>@fitzkarraldo</h4>
+	</div>
+      </div>
+      
+    </body>
+
+</html>
