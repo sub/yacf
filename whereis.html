@@ -20,40 +20,34 @@
 	} 
 
 	if (state == 'loaded' || state == 'complete') {
-            // getLocation();
-	    latitude = localStorage.getItem("latitude");
-	    alert(latitude);
+	    initializeMap();
 	} else {
             if (navigator.userAgent.indexOf('Browzr') > -1) {
-		setTimeout(geoLocation, 250);
+		setTimeout(initializeMap, 250);
             } else {
-		document.addEventListener('deviceready',geoLocation,false);
+		document.addEventListener('deviceready',initializeMap,false);
 	    }
 	}
     }
 
-    var getLocation = function() {
-	var suc = function(p) {
-	    initializeMap(p);
-	};
-	var fail = function() {
-	    alert("NOT ABLE TO GET THE CURRENT POSITION");
-	};
-//	navigator.geolocation.getCurrentPosition(suc,fail);
-    }
-
     function initializeMap(p) {
-        latitude = localStorage.getItem("latitude");
-	alert("should go to " + latitude);
+        var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
+        var to_lat;
+        var to_long;
+        // retrieve my data from my stores
+        gpsstore.get('destination', function(r) {
+            destination = r.value;
+        });
+        gpsstore.get('latitude', function(r) {
+            to_lat = r.value; 
+        });
+        gpsstore.get('longitude', function(r) {
+            to_long = r.value; 
+        });
 
-	var latlng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-	var myOptions = {
-	    zoom: 8,
-	    center: latlng,
-	           mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-	var map = new google.maps.Map(document.getElementById("map_canvas"),
-            myOptions);
+        $('.content').append(destination + "(lat: " + to_lat + ", long: " + to_long + ")");
+        $('.content').append('<br /><a href="whereis2.html">watch on map</a>');
+
     }
 
 </script>
