@@ -84,14 +84,15 @@
 	    origin:fromLatLng, 
 	    destination:toLatLng,
 	    travelMode: google.maps.DirectionsTravelMode.DRIVING
+	    // WALKING, BICYCLING
 	};
 
 	directionsService.route(request, function(result, status) {
-	    console.log("waiting");
+	    console.log("waiting for google service");
 	    if (status == google.maps.DirectionsStatus.OK) {
-		console.log("OK");
+		console.log("google returned OK");
+		console.log(result);
 		directionsDisplay.setDirections(result);
-		console.log("set directions?");
 	    }
 	});
 
@@ -103,40 +104,6 @@
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	console.log(map);
 	directionsDisplay.setMap(map);
-
-	// function initialize() {
-	//     directionsDisplay = new google.maps.DirectionsRenderer();
-	//     var from = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-	//     var myOptions = {
-	// 	zoom:7,
-	// 	mapTypeId: google.maps.MapTypeId.ROADMAP,
-	//     }
-	//     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	//     directionsDisplay.setMap(map);
-	// }
-		
-	/// a
-
-	// var DirReq = {
-	//     origin: fromLatLng,
-	//     destination: toLatLng,
-	//     travelMode: DirectionsTravelMode,
-	//     unitSystem: DirectionsUnitSystem,
-	//     waypoints[]: DirectionsWaypoint,
-	//     optimizeWaypoints: Boolean,
-	//     provideRouteAlternatives: Boolean,
-	//     avoidHighways: Boolean,
-	//     avoidTolls: Boolean
-	//     region: String
-	// }
-
-	// var myOptions = {
-	//     zoom: 8,
-	//     center: latlng,
-	//     mapTypeId: google.maps.MapTypeId.ROADMAP
-	// };
-	var map = new google.maps.Map(document.getElementById("map_canvas"),
-            myOptions);
     }
 
 </script>
