@@ -75,7 +75,9 @@
 	    console.log("to_long " + to_long);
         });
 
-	toLatLng = new google.maps.LatLng(to_lat, to_long);
+	// ATTENTION!! fake pos!!
+	//toLatLng = new google.maps.LatLng(to_lat, to_long);
+	toLatLng = new google.maps.LatLng(to_lat+1, to_long-2);
 	fromLatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
 	console.log(fromLatLng);
 	console.log(toLatLng);
