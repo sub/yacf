@@ -6,15 +6,9 @@ yacf, Yet Another Car Finder
 
 == Technology
 
-<<<<<<< HEAD
 * {phonegap}[http://code.google.com/closure/compiler/]
 * {jquery mobile}[http://jquerymobile.com]
 * {google maps api v3}[code.google.com/apis/maps/documentation/javascript/]
-=======
-{phonegap}[http://code.google.com/closure/compiler/]
-{jquery mobile}[http://jquerymobile.com]
-{google maps api v3}[code.google.com/apis/maps/documentation/javascript/]
->>>>>>> 32fede5b6f9157d0472539ef1c0d23194bfc2b2b
 
 == Copyright
 
