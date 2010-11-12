@@ -1,0 +1,15 @@
+== yacf
+
+yacf, Yet Another Car Finder
+    by Davide Saurino
+    http://github.com/sub/yacf
+
+== Technology
+
+* {phonegap}[http://code.google.com/closure/compiler/]
+* {jquery mobile}[http://jquerymobile.com]
+* {google maps api v3}[code.google.com/apis/maps/documentation/javascript/]
+
+== Copyright
+
+Copyright (c) 2010 Davide Saurino. See LICENSE for details.
