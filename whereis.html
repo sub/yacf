@@ -4,55 +4,15 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
     <link rel="stylesheet" href="jquery.mobile-1.0a2.min.css" />
+
+    <script src="scripts/whereis.js"></script>
     
-    <script src="scripts/phonegap-0.9.2.js"></script>
+    <script src="scripts/phonegap.js"></script>
     <script src="scripts/jquery-1.4.4.min.js"></script>
     <script src="scripts/jquery.mobile-1.0a2.min.js"></script>
     <script src="scripts/Lawnchair.js"></script>
     <script src="scripts/LawnchairAdaptorHelpers.js"></script>
     <script src="scripts/DOMStorageAdaptor.js"></script>
-    
-    <script type="text/javascript">
-    function loader() {
-	var state = document.readyState;
-
-	if (typeof(localStorage) == 'undefined' ) {
-	    alert('Upgrade your browser as it does not support HTML5 localStorage.');
-	} 
-
-	if (state == 'loaded' || state == 'complete') {
-	    initializeMap();
-	} else {
-            if (navigator.userAgent.indexOf('Browzr') > -1) {
-		setTimeout(initializeMap, 250);
-            } else {
-		document.addEventListener('deviceready',initializeMap,false);
-	    }
-	}
-    }
-
-    function initializeMap(p) {
-        var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
-        var to_lat;
-        var to_long;
-        // retrieve my data from my stores
-        gpsstore.get('destination', function(r) {
-            destination = r.value;
-        });
-        gpsstore.get('latitude', function(r) {
-            to_lat = r.value; 
-        });
-        gpsstore.get('longitude', function(r) {
-            to_long = r.value; 
-        });
-
-        $('.content').append(destination + "(lat: " + to_lat + ", long: " + to_long + ")");
-        $('.content').append('<br /><a href="whereis2.html">watch on map</a>');
-
-    }
-
-</script>
-    
   </head>
     <body onload="loader()">
     
