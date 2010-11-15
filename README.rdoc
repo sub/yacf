@@ -9,6 +9,7 @@ yacf, Yet Another Car Finder
 * {phonegap}[http://code.google.com/closure/compiler/]
 * {jquery mobile}[http://jquerymobile.com]
 * {google maps api v3}[code.google.com/apis/maps/documentation/javascript/]
+* {lawnchair}[https://github.com/brianleroux/lawnchair]
 
 == Copyright
 
