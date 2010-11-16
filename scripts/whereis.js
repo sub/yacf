@@ -1,4 +1,6 @@
-function loader(method) {
+// steps = 0 => coming from whereis2.html
+// steps = 1 => coming from whereis-text.html
+function loader(method, steps) {
     var state = document.readyState;
 
     if (typeof(localStorage) == 'undefined' ) {
@@ -6,17 +8,17 @@ function loader(method) {
     } 
 
     if (state == 'loaded' || state == 'complete') {
-	method();
+	method(steps);
     } else {
         if (navigator.userAgent.indexOf('Browzr') > -1) {
-	    setTimeout(method(), 250);
+	    setTimeout(method(steps), 250);
         } else {
-	    document.addEventListener('deviceready',method(),false);
+	    document.addEventListener('deviceready',method(steps),false);
 	}
     }
 }
 
-function getLocationFromStore(p) {
+function getLocationFromStore() {
     console.log("** getLocationFromStore");
     var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
     var to_lat;
@@ -37,10 +39,10 @@ function getLocationFromStore(p) {
 
 }
 
-var getLocation = function() {
+var getLocation = function(steps) {
     console.log("getLocation");
     var suc = function(p) {
-	initializeMap(p);
+	initializeMap(p, steps);
     };
     var fail = function() {
 	alert("NOT ABLE TO GET THE CURRENT POSITION");
@@ -48,7 +50,7 @@ var getLocation = function() {
     navigator.geolocation.getCurrentPosition(suc,fail);
 }
 
-function initializeMap(p) {
+function initializeMap(p, steps) {
     console.log("initializeMap");
     var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
     var destination;
@@ -96,6 +98,10 @@ function initializeMap(p) {
 	    console.log("google returned OK");
 	    console.log(result);
 	    directionsDisplay.setDirections(result);
+	    if(steps) { 
+		showSteps(result);
+		return;
+	    }
 	}
     });
 
@@ -108,3 +114,24 @@ function initializeMap(p) {
     console.log(map);
     directionsDisplay.setMap(map);
 }
+
+function showSteps(directionResult) {
+    var myRoute = directionResult.routes[0].legs[0];
+    var newText;
+    newText = "<li data-role=\"list-divider\">Total time</li>"
+    newText += "<li>" + myRoute.duration.text + "</li>";
+    newText += "<li data-role=\"list-divider\">FROM</li>"
+    newText += "<li>" + myRoute.start_address + "</li>";
+    
+    newText += "<li data-role=\"list-divider\">Directions</li>"
+    //TODO: paginate
+    for (var i = 0; i < myRoute.steps.length; i++) {
+	newText += "<li>" + i + " " + myRoute.steps[i].instructions;
+	newText += " " + myRoute.steps[i].distance.text  + "</li>" ;
+    }
+
+    newText += "<li data-role=\"list-divider\">TO</li>"
+    newText += "<li>" + myRoute.end_address + "</li>";
+    $('.ui-listview').html(newText).listview("refresh");
+}
+
