@@ -4,7 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="jquery.mobile-1.0a2.min.css" />
 
-    <script src="scripts/whereis2.js"></script>
+    <script src="scripts/whereis.js"></script>
     
     <script src="scripts/phonegap.js"></script>
     <script src="scripts/jquery-1.4.4.min.js"></script>
@@ -21,7 +21,7 @@
       #map_canvas { height: 40% }
     </style>
   </head>
-    <body onload="loader()">
+    <body onload="loader(getLocation)">
     
       <div data-role="page" data-fullscreen="true">
 	<div data-role="header" data-position="fixed">
