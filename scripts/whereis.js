@@ -1,7 +1,7 @@
 // steps = 0 => coming from whereis2.html
 // steps = 1 => coming from whereis-text.html
 function loader(method, steps) {
-    var state = document.readyState;
+    var state = document.readyState;	
 
     if (typeof(localStorage) == 'undefined' ) {
 	alert('Upgrade your browser as it does not support HTML5 localStorage.');
@@ -130,7 +130,7 @@ function showSteps(directionResult) {
 	newText += " " + myRoute.steps[i].distance.text  + "</li>" ;
     }
 
-    newText += "<li data-role=\"list-divider\">TO</li>"
+    newText += "<li data-role=\"list-divider\">DESTINATION</li>"
     newText += "<li>" + myRoute.end_address + "</li>";
     $('.ui-listview').html(newText).listview("refresh");
 }
