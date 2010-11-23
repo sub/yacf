@@ -30,18 +30,17 @@ var getPositions = function() {
     var store = new Lawnchair({table: 'mygps', adaptor: 'dom'});
     var newText;
 
-    // home o conome
-    // store.get('home', function(r) {
+    // default o conome
+    // store.get('default', function(r) {
     // 	console.log(r);
     // 	console.log(r.value.name);
     // });
 
     $(".result").hide();
-//    $(".positions").show();
+
     newText = "<li data-role=\"list-divider\">Saved positions</li>"
 
     store.each(function(r){
-	//console.log(r);
 	el = r.value;
 	if(el.name !== undefined) {
 	    console.log(el.name);
