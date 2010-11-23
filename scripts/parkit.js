@@ -29,6 +29,7 @@ var getLocation = function() {
     console.log("in - getLocation function");
     //bug in recent firefox versions, bypass call to getCurrentPosition
     parkIt();
+
     var suc = function(p) {
 	parkIt(p);
     };
@@ -36,7 +37,7 @@ var getLocation = function() {
 	console.log("not able to get the current position");
 	alert("NOT ABLE TO GET THE CURRENT POSITION");
     };
-    //navigator.geolocation.getCurrentPosition(suc,fail);
+//    navigator.geolocation.getCurrentPosition(suc,fail);
 }
 
 var getStoreIndex = function(store) {
@@ -86,10 +87,10 @@ function parkIt() {
 	});
 
 	position.index = index;
-	position.name = 'home';
-	position.latitude = 80;
-	position.longitude = 20;
-	gpsstore.save({key:'home', value:position});
+	position.name = 'Last Saved';
+	position.latitude = 40;
+	position.longitude = 18;
+	gpsstore.save({key:'default', value:position});
 
 	index = parseInt(index) + 1;
 	gpsstore.save({key:'index', value:index});
