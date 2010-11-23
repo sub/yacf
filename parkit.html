@@ -3,21 +3,19 @@
 <head>
   <link rel="stylesheet" href="jquery.mobile-1.0a2.min.css" />
 
+  <script src="scripts/phonegap.js"></script>
+
   <script src="scripts/jquery-1.4.4.min.js"></script>
 
-  <script src="scripts/phonegap.js"></script>
   <script src="scripts/Lawnchair.js"></script>
   <script src="scripts/LawnchairAdaptorHelpers.js"></script>
   <script src="scripts/DOMStorageAdaptor.js"></script>
   <script src="scripts/parkit.js"></script>
 
   <script src="scripts/jquery.mobile-1.0a2.min.js"></script>
-  <script type="text/javascript">
-
-</script>
     
 </head>
-    <body onload="loader()">
+    <body>
     
     <div data-role="page" data-theme="b" id="jqm-home"> 
       <div data-role="header">
@@ -25,14 +23,23 @@
       </div>
     
       <div data-role="content" class="content" align="center">       
-        Please wait, storing your GPS pos.
-      </div> 
+	<div id="result">
+          Please wait, storing your GPS pos
+	</div>
+	<div class="saving" style="display: none">
+	  <input type="text" name="position" />
+	  <div class="savingButton">
+	    <div id="save"><a href="#">SAVE</a></div>
+<!--	    <button>SAVE</button> -->
+	  </div>
+	</div>
+      </div>
     
       <div data-role="footer">
         <h4>@fitzkarraldo</h4>
       </div> 
     </div> 
-   
+
  </body>
  
 </html>
