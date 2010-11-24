@@ -26,9 +26,7 @@ $(window).load(function() {
 
 
 var getLocation = function() {
-    console.log("in - getLocation function");
-    //bug in recent firefox versions, bypass call to getCurrentPosition
-    parkIt();
+    console.log("getLocation()");
 
     var suc = function(p) {
 	parkIt(p);
@@ -37,7 +35,7 @@ var getLocation = function() {
 	console.log("not able to get the current position");
 	alert("NOT ABLE TO GET THE CURRENT POSITION");
     };
-//    navigator.geolocation.getCurrentPosition(suc,fail);
+    navigator.geolocation.getCurrentPosition(suc,fail);
 }
 
 var getStoreIndex = function(store) {
@@ -64,7 +62,7 @@ var getStoreIndex = function(store) {
     });
 }
 
-function parkIt() {
+function parkIt(p) {
     try {
         // create my Lawnchair stores
         var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
@@ -88,21 +86,17 @@ function parkIt() {
 
 	position.index = index;
 	position.name = 'Last Saved';
-	position.latitude = 40;
-	position.longitude = 18;
+	position.latitude = p.coords.latitude;
+	position.longitude = p.coords.longitude;
 	gpsstore.save({key:'default', value:position});
 
 	index = parseInt(index) + 1;
 	gpsstore.save({key:'index', value:index});
 
         // gpsstore.save({key:'destination', value:"home"});
-        // gpsstore.save({key:'latitude', value:"80"});
-        // gpsstore.save({key:'longitude', value:"20"});
-	// gpsstore.save({key:'latitude', value:p.coords.latitude});
-	// gpsstore.save({key:'longitude', value:p.coords.longitude});
 
-	newtext = "Car parked";
-//	newtext = "Car parked @ lat " + p.coords.latitude + " long " + p.coords.longitude;
+//	newtext = "Car parked";
+	newtext = "Car parked @ lat " + p.coords.latitude + " long " + p.coords.longitude;
 
 	$('#result').text(newtext);
 	$('#result').append("<div id=\"save\"><a href=\"#\">Give a name to this position</a></div>");
@@ -123,25 +117,19 @@ function parkIt() {
 	    position_with_name = {};
 	    position_with_name.index = index;
 	    position_with_name.name = position;
-	    position_with_name.latitude = 40;
-	    position_with_name.longitude = 10;
+	    position_with_name.latitude = p.coords.latitude;
+	    position_with_name.longitude = p.coords.longitude;
 	    gpsstore.save({key:position, value:position_with_name});
 
-	    // gpsstore.save({key:'destination2', value:position});
-	    // gpsstore.save({key:'latitude2', value:"80"});
-	    // gpsstore.save({key:'longitude2', value:"20"});
-
 	    // gpsstore.save({key:'destination', value:position});
-	    // gpsstore.save({key:'latitude', value:p.coords.latitude});
-	    // gpsstore.save({key:'longitude', value:p.coords.longitude});
 	    $('.saving').hide("slow");
 	    $('#result').append("<br />Position saved as " + position);
 	});
     } catch (e) {
 	alert('error!');
-	// if (e == QUOTA_EXCEEDED_ERR) {
-	//     alert('Quota exceeded!');
-	// }
+	if (e == QUOTA_EXCEEDED_ERR) {
+	    alert('Quota exceeded!');
+	}
     }
     
 }

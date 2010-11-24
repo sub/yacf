@@ -35,12 +35,6 @@ function getLocationFromStore() {
     // gpsstore.get('destination', function(r) {
     //     destination = r.value;
     // });
-    // gpsstore.get('latitude', function(r) {
-    //     to_lat = r.value; 
-    // });
-    // gpsstore.get('longitude', function(r) {
-    //     to_long = r.value; 
-    // });
 
     $('.content').append(destination + " (lat: " + to_lat + ", long: " + to_long + ")");
     $('.content').append('<br /><a href="whereis2.html" rel="external">watch on map</a>');
@@ -49,11 +43,6 @@ function getLocationFromStore() {
 
 var getLocation = function(steps, id) {
     console.log("getLocation()");
-    //bug in recent firefox versions, bypass call to getCurrentPosition
-    var p = {};
-    p.latitude = 40;
-    p.longitude = 17;
-    initializeMap(p, steps);
 
     var suc = function(p) {
 	initializeMap(p, steps);
@@ -61,7 +50,7 @@ var getLocation = function(steps, id) {
     var fail = function() {
 	alert("NOT ABLE TO GET THE CURRENT POSITION");
     };
-//    navigator.geolocation.getCurrentPosition(suc,fail);
+    navigator.geolocation.getCurrentPosition(suc,fail);
 }
 
 function initializeMap(p, steps) {
@@ -76,11 +65,8 @@ function initializeMap(p, steps) {
     var directionsService = new google.maps.DirectionsService();
     var map;
 
-//    console.log("actual latitude " + p.coords.latitude);
-//   console.log("actual longitude " + p.coords.longitude);
-
-    console.log("actual latitude " + p.latitude);
-    console.log("actual longitude " + p.longitude);
+    console.log("actual latitude " + p.coords.latitude);
+    console.log("actual longitude " + p.coords.longitude);
 
     // retrieve my data from my stores
     gpsstore.get('default', function(r) {
@@ -95,21 +81,13 @@ function initializeMap(p, steps) {
     //     destination = r.value;
     // 	console.log("destination " + destination);
     // });
-    // gpsstore.get('latitude', function(r) {
-    //     to_lat = r.value; 
-    // 	console.log("to_lat " + to_lat);
-    // });
-    // gpsstore.get('longitude', function(r) {
-    //     to_long = r.value;
-    // 	console.log("to_long " + to_long);
-    // });
 
     //ATTENTION!! fake pos!!
     //toLatLng = new google.maps.LatLng(to_lat, to_long);
     toLatLng = new google.maps.LatLng(to_lat+1, to_long-2);
 
-//    fromLatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-    fromLatLng = new google.maps.LatLng(p.latitude, p.longitude);
+    fromLatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+//    fromLatLng = new google.maps.LatLng(p.latitude, p.longitude);
 
     var request = {
 	origin:fromLatLng, 
