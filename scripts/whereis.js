@@ -86,14 +86,35 @@ function initializeMap(p, steps) {
     console.log("actual latitude " + p.coords.latitude);
     console.log("actual longitude " + p.coords.longitude);
 
-    // retrieve my data from my stores
-    gpsstore.get('default', function(r) {
-    	console.log(r);
-    	console.log(r.value.name);
-	destination = r.value.name;
-	to_lat = r.value.latitude;
-	to_long = r.value.longitude;
-    });
+// Get object of URL parameters
+// var allVars = $.getUrlVars();
+// console.log("allVars");
+// console.log(allVars);
+
+    // Getting URL var by its nam
+    var currentId = $.getUrlVar('id');
+
+    if(currentId === undefined) {
+	console.log("id is undefined, getting default store");
+	// retrieve my data from my stores
+	gpsstore.get('default', function(r) {
+    	    console.log(r);
+    	    console.log(r.value.name);
+	    destination = r.value.name;
+	    to_lat = r.value.latitude;
+	    to_long = r.value.longitude;
+	});
+    } else {
+	console.log("have an id value, getting store " + currentId);
+	// retrieve my data from my stores
+	gpsstore.get(currentId, function(r) {
+    	    console.log(r);
+    	    console.log(r.value.name);
+	    destination = r.value.name;
+	    to_lat = r.value.latitude;
+	    to_long = r.value.longitude;
+	});	
+    }
 
     // gpsstore.get('destination', function(r) {
     //     destination = r.value;
