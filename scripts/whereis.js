@@ -93,7 +93,8 @@ function initializeMap(p, steps) {
 
     // Getting URL var by its nam
     var currentId = $.getUrlVar('id');
-
+    
+console.log("QU");
     if(currentId === undefined) {
 	console.log("id is undefined, getting default store");
 	// retrieve my data from my stores
@@ -105,6 +106,7 @@ function initializeMap(p, steps) {
 	    to_long = r.value.longitude;
 	});
     } else {
+	if(currentId == 0) currentId = "default";
 	console.log("have an id value, getting store " + currentId);
 	// retrieve my data from my stores
 	gpsstore.get(currentId, function(r) {
@@ -116,6 +118,7 @@ function initializeMap(p, steps) {
 	});	
     }
 
+console.log("QU2");
     // gpsstore.get('destination', function(r) {
     //     destination = r.value;
     // 	console.log("destination " + destination);
