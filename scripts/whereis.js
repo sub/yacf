@@ -18,12 +18,30 @@ function loader(method, steps) {
     }
 }
 
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  }
+});
+
 function getLocationFromStore() {
     console.log("getLocationFromStore()");
+
     var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
     var to_lat;
     var to_long;
-    // retrieve my data from my stores
+    // retrieve my data from my store
     gpsstore.get('default', function(r) {
     	console.log(r);
     	console.log(r.value.name);
