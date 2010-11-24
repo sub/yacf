@@ -44,7 +44,7 @@ var getPositions = function() {
 	el = r.value;
 	if(el.name !== undefined) {
 	    console.log(el.name);
-	    newText += "<li><a href=\""+el.index+"\" rel=\"external\">" + el.name + "</a></li>";
+	    newText += "<li><a href=\"whereis2.html?id="+el.index+"\" rel=\"external\">" + el.name + "</a></li>";
 	}
     });
 
