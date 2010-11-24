@@ -119,7 +119,7 @@ function parkIt(p) {
 	    position_with_name.name = position;
 	    position_with_name.latitude = p.coords.latitude;
 	    position_with_name.longitude = p.coords.longitude;
-	    gpsstore.save({key:position, value:position_with_name});
+	    gpsstore.save({key:index, value:position_with_name});
 
 	    // gpsstore.save({key:'destination', value:position});
 	    $('.saving').hide("slow");
