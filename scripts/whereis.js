@@ -36,15 +36,12 @@ $.extend({
 });
 
 function getLocationFromStore() {
-    console.log("getLocationFromStore()");
-
     var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
     var to_lat;
     var to_long;
     // retrieve my data from my store
     gpsstore.get('default', function(r) {
     	console.log(r);
-    	console.log(r.value.name);
 	destination = r.value.name;
 	to_lat = r.value.latitude;
 	to_long = r.value.longitude;
@@ -60,8 +57,6 @@ function getLocationFromStore() {
 }
 
 var getLocation = function(steps, id) {
-    console.log("getLocation()");
-
     var suc = function(p) {
 	initializeMap(p, steps);
     };
@@ -72,7 +67,6 @@ var getLocation = function(steps, id) {
 }
 
 function initializeMap(p, steps) {
-    console.log("initializeMap");
     var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
     var destination;
     var to_lat;
@@ -94,13 +88,11 @@ function initializeMap(p, steps) {
     // Getting URL var by its nam
     var currentId = $.getUrlVar('id');
     
-console.log("QU");
     if(currentId === undefined) {
 	console.log("id is undefined, getting default store");
 	// retrieve my data from my stores
 	gpsstore.get('default', function(r) {
     	    console.log(r);
-    	    console.log(r.value.name);
 	    destination = r.value.name;
 	    to_lat = r.value.latitude;
 	    to_long = r.value.longitude;
@@ -111,14 +103,12 @@ console.log("QU");
 	// retrieve my data from my stores
 	gpsstore.get(currentId, function(r) {
     	    console.log(r);
-    	    console.log(r.value.name);
 	    destination = r.value.name;
 	    to_lat = r.value.latitude;
 	    to_long = r.value.longitude;
 	});	
     }
 
-console.log("QU2");
     // gpsstore.get('destination', function(r) {
     //     destination = r.value;
     // 	console.log("destination " + destination);
@@ -143,7 +133,6 @@ console.log("QU2");
 	console.log("status " + status);
 	if (status == google.maps.DirectionsStatus.OK) {
 	    console.log("google returned OK");
-	    console.log(result);
 	    directionsDisplay.setDirections(result);
 	    if(steps) { 
 		showSteps(result);
@@ -158,7 +147,6 @@ console.log("QU2");
     }
     
     map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-    console.log(map);
     directionsDisplay.setMap(map);
 }
 

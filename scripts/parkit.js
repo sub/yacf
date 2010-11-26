@@ -1,7 +1,4 @@
-console.log("parkit.js code included");
-
 $(window).load(function() {    
-    console.log("load function");
     var state = document.readyState;
     
     if (typeof(localStorage) == 'undefined' ) {
@@ -14,10 +11,8 @@ $(window).load(function() {
 	getLocation();
     } else {
 	if (navigator.userAgent.indexOf('Browzr') > -1) {
-	    console.log("setting timeout for geoLocation");
 	    setTimeout(getLocation, 250);
 	} else {
-	    console.log("else");
 	    document.addEventListener('deviceready',getLocation,false);
 	}
     }
@@ -26,8 +21,6 @@ $(window).load(function() {
 
 
 var getLocation = function() {
-    console.log("getLocation()");
-
     var suc = function(p) {
 	parkIt(p);
     };
@@ -39,8 +32,6 @@ var getLocation = function() {
 }
 
 var getStoreIndex = function(store) {
-    console.log("getStoreIndex()");
-
 //    var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
     var result;
     store.get('index', function(r) {
@@ -56,8 +47,6 @@ var getStoreIndex = function(store) {
 	    console.log("result value = " + result);
 	    return result;
 	}
-	console.log("sto tornando");
-	console.log(result);
 	return result;
     });
 }
@@ -73,15 +62,11 @@ function parkIt(p) {
 	    if(r === null) {
 		console.log("index undefined, initializing...");
 		index = 0;
-		console.log(index);
 		gpsstore.save({key:'index', value:index});
 	    } else {
 		console.log(r);
 		index = r.value;
-		console.log("index value = " + index);
 	    }
-	    console.log("sto tornando");
-	    console.log(index);
 	});
 
 	position.index = index;
@@ -103,7 +88,6 @@ function parkIt(p) {
 
 	//$("#save").button();
 	$('#save').click(function() {
-	    console.log("show saving");
 	    $('#save').hide();
             $('.saving').show("slow");
 	    //$("button").button();
@@ -111,9 +95,7 @@ function parkIt(p) {
         });
 
 	$(".savingButton" ).click(function() {
-	    console.log("saving");
 	    position = $("input").val();
-	    console.log("position name: " + position);
 	    position_with_name = {};
 	    position_with_name.index = index;
 	    position_with_name.name = position;
@@ -126,7 +108,6 @@ function parkIt(p) {
 	    $('#result').append("<br />Position saved as " + position);
 	});
     } catch (e) {
-	alert('error!');
 	if (e == QUOTA_EXCEEDED_ERR) {
 	    alert('Quota exceeded!');
 	}
