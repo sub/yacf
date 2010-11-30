@@ -117,10 +117,13 @@ function initializeMap(p, steps) {
 	console.log("have an id value, getting store " + currentId);
 	// retrieve my data from my stores
 	gpsstore.get(currentId, function(r) {
-    	    console.log(r);
-	    destination = r.value.name;
-	    to_lat = r.value.latitude;
-	    to_long = r.value.longitude;
+	    if(r !== null) {
+		result = 1;
+    		console.log(r);
+		destination = r.value.name;
+		to_lat = r.value.latitude;
+		to_long = r.value.longitude;
+	    }
 	});	
     }
 
