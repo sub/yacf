@@ -87,6 +87,7 @@ function initializeMap(p, steps) {
     var directionsDisplay = new google.maps.DirectionsRenderer();
     var directionsService = new google.maps.DirectionsService();
     var map;
+    var result = 0;
 
     console.log("actual latitude " + p.coords.latitude);
     console.log("actual longitude " + p.coords.longitude);
@@ -103,10 +104,13 @@ function initializeMap(p, steps) {
 	console.log("id is undefined, getting default store");
 	// retrieve my data from my stores
 	gpsstore.get('default', function(r) {
-    	    console.log(r);
-	    destination = r.value.name;
-	    to_lat = r.value.latitude;
-	    to_long = r.value.longitude;
+	    if(r !== null) {
+		result = 1;
+    		console.log(r);
+		destination = r.value.name;
+		to_lat = r.value.latitude;
+		to_long = r.value.longitude;
+	    }
 	});
     } else {
 	if(currentId == 0) currentId = "default";
@@ -118,6 +122,12 @@ function initializeMap(p, steps) {
 	    to_lat = r.value.latitude;
 	    to_long = r.value.longitude;
 	});	
+    }
+
+    if(!result) {
+	console.log("no positions saved, exit...");
+	$('.content').append("<div align=\"center\">No saved positions, park your car first!</div>");
+	return;
     }
 
     // gpsstore.get('destination', function(r) {
