@@ -37,22 +37,32 @@ $.extend({
 
 function getLocationFromStore() {
     var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
+    var destination;
     var to_lat;
     var to_long;
+    var result = 0;
+
     // retrieve my data from my store
     gpsstore.get('default', function(r) {
-    	console.log(r);
-	destination = r.value.name;
-	to_lat = r.value.latitude;
-	to_long = r.value.longitude;
+	if(r !== null) {
+	    result = 1;
+    	    console.log(r);
+	    destination = r.value.name;
+	    to_lat = r.value.latitude;
+	    to_long = r.value.longitude;
+	}
     });
 
     // gpsstore.get('destination', function(r) {
     //     destination = r.value;
     // });
 
-    $('.content').append(destination + " (lat: " + to_lat + ", long: " + to_long + ")");
-    $('.content').append('<br /><a href="whereis2.html" rel="external">watch on map</a>');
+    if(result) {
+	$('.content').append(destination + " (lat: " + to_lat + ", long: " + to_long + ")");
+	$('.content').append('<br /><a href="whereis2.html" rel="external">watch on map</a>');
+    } else {
+	$('.content').append("No saved positions, park your car first!");
+    }
 
 }
 
