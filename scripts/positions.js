@@ -1,7 +1,4 @@
-console.log("positions.js code included");
-
 $(window).load(function() {    
-    console.log("positions load function");
     var state = document.readyState;
     
     if (typeof(localStorage) == 'undefined' ) {
@@ -10,14 +7,13 @@ $(window).load(function() {
     } 
     
     if (state == 'loaded' || state == 'complete') {
-	console.log("load completed, calling geoLocation");
+	//console.log("load completed, calling geoLocation");
 	getPositions();
     } else {
 	if (navigator.userAgent.indexOf('Browzr') > -1) {
-	    console.log("setting timeout for getPositions");
+	    //console.log("setting timeout for getPositions");
 	    setTimeout(getPositions, 250);
 	} else {
-	    console.log("else");
 	    document.addEventListener('deviceready',getPositions,false);
 	}
     }
@@ -25,8 +21,6 @@ $(window).load(function() {
 });
 
 var getPositions = function() {
-    console.log("in - getPositions function");
-
     var store = new Lawnchair({table: 'mygps', adaptor: 'dom'});
     var newText;
 

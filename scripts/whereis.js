@@ -57,6 +57,7 @@ function getLocationFromStore() {
 }
 
 var getLocation = function(steps, id) {
+    console.log("getLocation()");
     var suc = function(p) {
 	initializeMap(p, steps);
     };
