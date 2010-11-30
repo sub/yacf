@@ -23,6 +23,7 @@ $(window).load(function() {
 var getPositions = function() {
     var store = new Lawnchair({table: 'mygps', adaptor: 'dom'});
     var newText;
+    var results = 0;
 
     // default o conome
     // store.get('default', function(r) {
@@ -35,6 +36,7 @@ var getPositions = function() {
     newText = "<li data-role=\"list-divider\">Saved positions</li>"
 
     store.each(function(r){
+	results = 1;
 	el = r.value;
 	if(el.name !== undefined) {
 //	    newText += "<li><a href=\"whereis2.html?id="+el.index+"\" rel=\"external\">" + el.name + "</a></li>";
@@ -42,19 +44,21 @@ var getPositions = function() {
 	}
     });
 
+    if(!results) newText += "<li>No saved positions, park your car first!</li>";
     newText += "</ul>";
     $('.ui-listview').html(newText).listview("refresh");
 
 //    lis = $("li").get();
 //    for (var i = 0; i < lis.length; i++) {
-    $("li").click(function() {
-	attr_value = $(this).attr("id");	     
-	window.location.pathname = "/whereis2.html?id="+attr_value;
-	// $.get('whereis4.html', { id: attr_value }, function(data) {
-	// 	$('.content').html(data);
-	// 	console.log("attr value " + attr_value);
-	// });
-    });
-    //    }
-
+    if(results) {
+	$("li").click(function() {
+	    attr_value = $(this).attr("id");	     
+	    window.location.pathname = "/whereis2.html?id="+attr_value;
+	    // $.get('whereis4.html', { id: attr_value }, function(data) {
+	    // 	$('.content').html(data);
+	    // 	console.log("attr value " + attr_value);
+	    // });
+	});
+	//    }
+    }
 }
