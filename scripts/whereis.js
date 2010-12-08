@@ -53,10 +53,6 @@ function getLocationFromStore() {
 	}
     });
 
-    // gpsstore.get('destination', function(r) {
-    //     destination = r.value;
-    // });
-
     if(result) {
 	$('.content').append(destination + " (lat: " + to_lat + ", long: " + to_long + ")");
 	$('.content').append('<br /><a href="whereis2.html" rel="external">watch on map</a>');
