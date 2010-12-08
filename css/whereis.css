@@ -1,0 +1,23 @@
+#main {
+    float:left;
+    width:30%;
+    height:50%;
+/*    display:block; */
+    padding:10px;
+    position:fixed;
+}
+#sidebar {
+    width:30%;
+    height:50%;
+    display:none;
+    padding:10px;
+    position:absolute;
+    top:30%
+}
+/* #map_canvas { */
+/*     float:right; */
+/*     width:20%; */
+/* /\*    height:50%; *\/ */
+/*     position:absolute; */
+/*     /\* padding-left: 10px; *\/ */
+/* } */
