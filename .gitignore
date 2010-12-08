@@ -6,3 +6,5 @@
 ## VIM
 *.swp
 
+## PROJECT SPECIFIC
+move.sh
