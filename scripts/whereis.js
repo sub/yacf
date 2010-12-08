@@ -56,6 +56,7 @@ function getLocationFromStore() {
     if(result) {
 	$('.content').append(destination + " (lat: " + to_lat + ", long: " + to_long + ")");
 	$('.content').append('<br /><a href="whereis2.html" rel="external">watch on map</a>');
+	$('#sidebar').show();
     } else {
 	$('.content').append("No saved positions, park your car first!");
     }
