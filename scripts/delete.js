@@ -89,9 +89,8 @@ function deleteLocation() {
 	    store.remove(currentId);
 	    //console.log("maybe REMOVED" + currentId);
 	    $('ui-dialog').dialog('close');
+	    window.location.pathname = 'index.html';
         });
-
-	window.location.pathname = 'index.html';
 
     } catch (e) {
 	console.log("something wrong happened");
