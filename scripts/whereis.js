@@ -77,7 +77,6 @@ function getLocationFromStore() {
 	// retrieve my data from my stores
 	gpsstore.get(currentId, function(r) {
 	    if(r !== null) {
-		console.log("DENTRO");
 		result = 1;
     		console.log(r);
 		destination = r.value.name;
@@ -98,6 +97,7 @@ function getLocationFromStore() {
 	    $('#full-screen').attr('href', 'map-full.html');
 	    $('#delete').attr('href', 'delete.html');
 	} else {
+	    if(currentId == "default") currentId = 0;
 	    $('#directions').attr('href', 'directions.html?id='+currentId);
 	    $('#full-screen').attr('href', 'map-full.html?id='+currentId);
 	    $('#delete').attr('href', 'delete.html?id='+currentId);
