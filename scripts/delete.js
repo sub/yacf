@@ -19,6 +19,36 @@ $(window).load(function() {
 
 });
 
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  },
+  getParentUrlVars: function(){
+    var vars = [], hash;
+    var hashes = parent.window.location.href.slice(parent.window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getParentUrlVar: function(name){
+    return $.getParentUrlVars()[name];
+  }
+});
 
 var getStoreIndex = function(store) {
 //    var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
@@ -46,21 +76,18 @@ function deleteLocation() {
         var store = new Lawnchair({table: 'mygps', adaptor: 'dom'});
 	var index;
 	var position = {};
-
-	store.get('index', function(r) {
-	    if(r === null) {
-		console.log("index undefined, exiting...");
-		return;
-	    } else {
-		console.log(r);
-		index = r.value;
-	    }
-	});
-
+	var currentId = $.getUrlVar('id');
+	
+	if(currentId === undefined) {
+	    console.log("id is undefined");
+	} else {
+	    if(currentId == 0) currentId = "default";
+	}
+	    
 	$('#delete').click(function() {
-	    console.log("DELETE button clicked");
-	    store.remove('default');
-	    console.log("maybe REMOVED");
+	    //console.log("DELETE button clicked");
+	    store.remove(currentId);
+	    //console.log("maybe REMOVED" + currentId);
 	    $('ui-dialog').dialog('close');
         });
 
