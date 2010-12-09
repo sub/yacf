@@ -24,6 +24,7 @@ function nuke() {
         // create my Lawnchair stores
         var store = new Lawnchair({table: 'mygps', adaptor: 'dom'});
 	store.nuke();
+	$('#result').html("NUKED!");
     } catch (e) {
 	console.log("something wrong happened");
     }
