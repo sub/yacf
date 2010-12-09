@@ -1,4 +1,4 @@
-// steps = 0 => coming from whereis2.html i.e. not show steps
+// steps = 0 => coming from map-full.html i.e. not show steps
 // steps = 1 => coming from directions.html i.e. show steps
 function loader(method, steps) {
     var state = document.readyState;	
@@ -95,11 +95,11 @@ function getLocationFromStore() {
 	$('#sidebar').show();
 	if(currentId === undefined) {
 	    $('#directions').attr('href', 'directions.html');
-	    $('#full-screen').attr('href', 'whereis2.html');
+	    $('#full-screen').attr('href', 'map-full.html');
 	    $('#delete').attr('href', 'delete.html');
 	} else {
 	    $('#directions').attr('href', 'directions.html?id='+currentId);
-	    $('#full-screen').attr('href', 'whereis2.html?id='+currentId);
+	    $('#full-screen').attr('href', 'map-full.html?id='+currentId);
 	    $('#delete').attr('href', 'delete.html?id='+currentId);
 	}
     } else {
