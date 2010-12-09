@@ -56,21 +56,50 @@ function getLocationFromStore() {
     var to_long;
     var result = 0;
 
-    // retrieve my data from my store
-    gpsstore.get('default', function(r) {
-	if(r !== null) {
-	    result = 1;
-    	    console.log(r);
-	    destination = r.value.name;
-	    to_lat = r.value.latitude;
-	    to_long = r.value.longitude;
-	}
-    });
+    // Getting URL var by its name
+    var currentId = $.getUrlVar('id');
+
+    if(currentId === undefined) {
+	console.log("id is undefined, getting default store");
+	// retrieve my data from my stores
+	gpsstore.get('default', function(r) {
+	    if(r !== null) {
+		result = 1;
+    		console.log(r);
+		destination = r.value.name;
+		to_lat = r.value.latitude;
+		to_long = r.value.longitude;
+	    }
+	});
+    } else {
+	if(currentId == 0) currentId = "default";
+	console.log("have an id value, GETTING store " + currentId);
+	// retrieve my data from my stores
+	gpsstore.get(currentId, function(r) {
+	    if(r !== null) {
+		console.log("DENTRO");
+		result = 1;
+    		console.log(r);
+		destination = r.value.name;
+		to_lat = r.value.latitude;
+		to_long = r.value.longitude;
+	    }
+	});	
+    }
 
     if(result) {
-	$('.content').append(destination + " (lat: " + to_lat + ", long: " + to_long + ")");
-	$('.content').append('<br /><a href="whereis2.html" rel="external">watch on map</a>');
+	$('#main').append(destination + " (lat: " + to_lat + ", long: " + to_long + ")");
+	// $('.content').append('<br /><a href="whereis2.html" rel="external">watch on map</a>');
 	$('#sidebar').show();
+	if(currentId === undefined) {
+	    $('#directions').attr('href', 'whereis-text.html');
+	    $('#full-screen').attr('href', 'whereis2.html');
+	    $('#delete').attr('href', 'delete.html');
+	} else {
+	    $('#directions').attr('href', 'whereis-text.html?id='+currentId);
+	    $('#full-screen').attr('href', 'whereis2.html?id='+currentId);
+	    $('#delete').attr('href', 'delete.html?id='+currentId);
+	}
     } else {
 	$('.content').append("No saved positions, park your car first!");
     }
