@@ -23,13 +23,17 @@
 	</div>
 	
 	<div data-role="content" class="content">
-	  <div id="main" align="center"></div>
+	<div id="main" style="display:none" align="center">
+	  <p id="posname"></p>
+	  <p id="latitude"></p>
+	  <p id="longitude"></p>
+	</div>
 
 	  <div id="sidebar">
 	    <div data-inline="true">
 	      <a href="whereis-text.html" data-role="button" rel="external" id="directions">Directions</a>
 	      <a href="whereis2.html" data-role="button" rel="external" id="full-screen">Full screen map</a>
-	      <a href="delete.html" data-role="button" id="delete">Delete</a>
+	      <a href="delete.html" data-role="button" rel="external" id="delete">Delete</a>
 <!-- data-rel="dialog" data-transition="flip" -->
 	    </div>
 	  </div>
@@ -41,7 +45,6 @@
 	</div>
 
 	 <div data-role="footer">
-	   <h4>@fitzkarraldo</h4>
 	 </div>
       </div>
       

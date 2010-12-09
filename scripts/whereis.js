@@ -88,8 +88,10 @@ function getLocationFromStore() {
     }
 
     if(result) {
-	$('#main').append(destination + " (lat: " + to_lat + ", long: " + to_long + ")");
-	// $('.content').append('<br /><a href="whereis2.html" rel="external">watch on map</a>');
+	$('#main').show();
+	$('#posname').html("" + destination);
+	$('#latitude').html("Latitude: " + to_lat);
+	$('#longitude').html("Longitude: " + to_long);
 	$('#sidebar').show();
 	if(currentId === undefined) {
 	    $('#directions').attr('href', 'whereis-text.html');
