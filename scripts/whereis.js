@@ -118,6 +118,8 @@ var getLocation = function(steps, id) {
 }
 
 function initializeMap(p, steps) {
+    console.log("initializeMap");
+
     var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
     var destination;
     var to_lat;
@@ -137,8 +139,8 @@ function initializeMap(p, steps) {
 // console.log("allVars");
 // console.log(allVars);
 
-    // Getting URL var by its nam
-    var currentId = $.getUrlVar('id');
+    // Getting URL var by its name
+    var currentId = $.getParentUrlVar('id');
     
     if(currentId === undefined) {
 	console.log("id is undefined, getting default store");
