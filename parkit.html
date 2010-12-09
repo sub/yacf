@@ -4,39 +4,43 @@
   <link rel="stylesheet" href="jquery.mobile-1.0a2.min.css" />
 
   <script src="scripts/phonegap.js"></script>
-
   <script src="scripts/jquery-1.4.4.min.js"></script>
-
   <script src="scripts/Lawnchair.js"></script>
   <script src="scripts/LawnchairAdaptorHelpers.js"></script>
   <script src="scripts/DOMStorageAdaptor.js"></script>
   <script src="scripts/parkit.js"></script>
-
   <script src="scripts/jquery.mobile-1.0a2.min.js"></script>
     
 </head>
     <body>
     
-    <div data-role="page" data-theme="b" id="jqm-home"> 
+    <div data-role="page" data-theme="a" id="parkit"> 
       <div data-role="header">
-        <h1>parkit!</h1>
+	<a href="index.html" data-icon="arrow-l" rel="external">Back</a>
+        <h1>Park car</h1>
       </div>
     
       <div data-role="content" class="content" align="center">       
 	<div id="result">
-          Please wait, storing your GPS pos
+          Please wait, storing your GPS pos...
 	</div>
-	<div class="saving" style="display: none">
+	<div id="success" style="display:none">
+	  <p>Your car has been parked successfully!</p>
+	  <p id="latitude"></p>
+	  <p id="longitude"></p>
+	</div>
+	<div id="save" data-inline="true" style="display:none">
+	  <a href="#" data-role="button">Save with name</a>
+	</div>
+	<div class="saving" style="display:none">
 	  <input type="text" name="position" />
 	  <div class="savingButton">
 	    <div id="save"><a href="#">SAVE</a></div>
-<!--	    <button>SAVE</button> -->
 	  </div>
 	</div>
       </div>
     
       <div data-role="footer">
-        <h4>@fitzkarraldo</h4>
       </div> 
     </div> 
 

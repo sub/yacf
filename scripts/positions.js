@@ -25,21 +25,15 @@ var getPositions = function() {
     var newText;
     var results = 0;
 
-    // default o conome
-    // store.get('default', function(r) {
-    // 	console.log(r);
-    // 	console.log(r.value.name);
-    // });
-
     $(".result").hide();
 
-    newText = "<li data-role=\"list-divider\">Saved positions</li>"
+    //newText = "<li data-role=\"list-divider\">Saved positions</li>"
+    newText = "";
 
     store.each(function(r){
 	results = 1;
 	el = r.value;
 	if(el.name !== undefined) {
-//	    newText += "<li><a href=\"whereis2.html?id="+el.index+"\" rel=\"external\">" + el.name + "</a></li>";
 	    newText += "<li id=\""+el.index+"\">" + el.name + "</li>";
 	}
     });
@@ -54,10 +48,6 @@ var getPositions = function() {
 	$("li").click(function() {
 	    attr_value = $(this).attr("id");	     
 	    window.location.pathname = "/whereis-new.html?id="+attr_value;
-	    // $.get('whereis4.html', { id: attr_value }, function(data) {
-	    // 	$('.content').html(data);
-	    // 	console.log("attr value " + attr_value);
-	    // });
 	});
 	//    }
     }

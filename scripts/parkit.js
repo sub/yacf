@@ -53,7 +53,6 @@ var getStoreIndex = function(store) {
 
 function parkIt(p) {
     try {
-        // create my Lawnchair stores
         var gpsstore = new Lawnchair({table: 'mygps', adaptor: 'dom'});
 	var index;
 	var position = {};
@@ -78,19 +77,16 @@ function parkIt(p) {
 	index = parseInt(index) + 1;
 	gpsstore.save({key:'index', value:index});
 
-        // gpsstore.save({key:'destination', value:"home"});
+//	$('#result').text(newtext);
+	$('#result').hide();
+	$('#success').show();
+	$('#latitude').html("Latitude: " + p.coords.latitude);
+	$('#longitude').html("Longitude: " + p.coords.latitude);
+	$('#save').show();
 
-//	newtext = "Car parked";
-	newtext = "Car parked @ lat " + p.coords.latitude + " long " + p.coords.longitude;
-
-	$('#result').text(newtext);
-	$('#result').append("<div id=\"save\"><a href=\"#\">Give a name to this position</a></div>");
-
-	//$("#save").button();
 	$('#save').click(function() {
 	    $('#save').hide();
             $('.saving').show("slow");
-	    //$("button").button();
 	    $("a").button();
         });
 
@@ -105,7 +101,7 @@ function parkIt(p) {
 
 	    // gpsstore.save({key:'destination', value:position});
 	    $('.saving').hide("slow");
-	    $('#result').append("<br />Position saved as " + position);
+	    $('#success').append("<br />This GPS position has been saved as " + position);
 	});
     } catch (e) {
 	if (e == QUOTA_EXCEEDED_ERR) {

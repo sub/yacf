@@ -4,41 +4,37 @@
   <link rel="stylesheet" href="jquery.mobile-1.0a2.min.css" />
 
   <script src="scripts/phonegap.js"></script>
-
   <script src="scripts/jquery-1.4.4.min.js"></script>
-
   <script src="scripts/Lawnchair.js"></script>
   <script src="scripts/LawnchairAdaptorHelpers.js"></script>
   <script src="scripts/DOMStorageAdaptor.js"></script>
   <script src="scripts/positions.js"></script>
-
   <script src="scripts/jquery.mobile-1.0a2.min.js"></script>
-  <!-- <script src="scripts/jquery.url.js"></script> -->
     
 </head>
     <body>
     
-    <div data-role="page" data-theme="b" id="jqm-home"> 
+    <div data-role="page" data-theme="a" id="saved-positions"> 
       <div data-role="header">
-        <h1>yacf - positions</h1>
+	<a href="index.html" data-icon="arrow-l" rel="external">Back</a>
+        <h1>my positions</h1>
+	<a href="parkit.html" data-icon="arrow-r" rel="external" data-iconpos="right">Park!</a>
       </div>
-    
+      
       <div data-role="content" class="content">       
 	<div id="result" class="result">
           Loading your saved positions, please wait...
 	</div>
 
 	<div id="positions" class="positions">
-	  <ul data-role="listview" data-theme="c" id="list-directions"> 
+	  <ul data-role="listview" id="list-directions" data-inset="true"> 
 	  </ul>  
 	</div>
 
       </div>
     
       <div data-role="footer">
-        <h4>@fitzkarraldo</h4>
       </div> 
-    </div> 
 
  </body>
  

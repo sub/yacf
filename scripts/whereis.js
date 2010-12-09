@@ -217,8 +217,10 @@ function initializeMap(p, steps) {
 }
 
 function showSteps(directionResult) {
+    console.log("showSteps");
     var myRoute = directionResult.routes[0].legs[0];
     var newText;
+    $('.result').hide();
     newText = "<li data-role=\"list-divider\">Total time</li>";
     newText += "<li>" + myRoute.duration.text + "</li>";
     newText += "<li data-role=\"list-divider\">FROM</li>"
