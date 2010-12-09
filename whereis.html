@@ -29,14 +29,13 @@
 	  <p id="longitude"></p>
 	</div>
 
-	  <div id="sidebar">
-	    <div data-inline="true">
-	      <a href="directions.html" data-role="button" rel="external" id="directions">Directions</a>
-	      <a href="map-full.html" data-role="button" rel="external" id="full-screen">Full screen map</a>
-	      <a href="delete.html" data-role="button" rel="external" id="delete">Delete</a>
-<!-- data-rel="dialog" data-transition="flip" -->
-	    </div>
-	  </div>
+<!-- 	  <div id="sidebar"> -->
+<!-- 	    <div data-inline="true"> -->
+<!-- 	      <a href="directions.html" data-role="button" rel="external" id="directions">Directions</a> -->
+<!-- 	      <a href="map-full.html" data-role="button" rel="external" id="full-screen">Full screen map</a> -->
+<!-- 	      <a href="delete.html" data-role="button" rel="external" id="delete">Delete</a> -->
+<!-- 	    </div> -->
+<!-- 	  </div> -->
 
 	  <iframe src="map-iframe.html" frameborder="0" border="0" cellspacing="0" width="60%" height="80%" style="border-style: none;float:right">
 	    <p>Your browser does not support iframes.</p>
@@ -44,9 +43,15 @@
 
 	</div>
 
-	 <div data-role="footer">
-	 </div>
-      </div>
+	<div data-role="footer">
+	  <div data-role="navbar">
+	    <ul>
+	      <li><a href="directions.html" data-role="button" rel="external" id="directions">Directions</a></li>
+	      <li><a href="map-full.html" data-role="button" rel="external" id="full-screen">Full screen map</a></li>
+	      <li><a href="delete.html" data-role="button" rel="external" id="delete">Delete</a></li>
+	    </ul>
+	  </div>
+	</div>
       
     </body>
 
