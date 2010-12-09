@@ -32,6 +32,20 @@ $.extend({
   },
   getUrlVar: function(name){
     return $.getUrlVars()[name];
+  },
+  getParentUrlVars: function(){
+    var vars = [], hash;
+    var hashes = parent.window.location.href.slice(parent.window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getParentUrlVar: function(name){
+    return $.getParentUrlVars()[name];
   }
 });
 
