@@ -53,7 +53,7 @@ var getPositions = function() {
     if(results) {
 	$("li").click(function() {
 	    attr_value = $(this).attr("id");	     
-	    window.location.pathname = "/whereis2.html?id="+attr_value;
+	    window.location.pathname = "/whereis-new.html?id="+attr_value;
 	    // $.get('whereis4.html', { id: attr_value }, function(data) {
 	    // 	$('.content').html(data);
 	    // 	console.log("attr value " + attr_value);
