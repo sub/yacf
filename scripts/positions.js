@@ -47,7 +47,7 @@ var getPositions = function() {
     if(results) {
 	$("li").click(function() {
 	    attr_value = $(this).attr("id");	     
-	    window.location.pathname = "/whereis-new.html?id="+attr_value;
+	    window.location.pathname = "/whereis.html?id="+attr_value;
 	});
 	//    }
     }
